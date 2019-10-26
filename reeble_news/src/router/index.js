@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
-import User from '@/pages/User'
+import Profile from '@/pages/Profile'
 
 Vue.use(Router)
 
@@ -23,8 +23,8 @@ export default new Router({
       component:Register
     },
     {
-      path:'/user',
-      component:User,
+      path:'/profile',
+      component:Profile,
     }
   ]
 })

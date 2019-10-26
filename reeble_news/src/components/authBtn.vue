@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
     button{
         width: 100%;
         line-height: 13.333vw;
