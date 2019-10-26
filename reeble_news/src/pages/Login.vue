@@ -77,12 +77,12 @@ export default {
                          username:this.username,
                          password:this.password
                      }
-                 }).then(result=>{
-                     
-                     if(result.data.statusCode && result.data.statusCode==401){
-                         this.$toast('账号或密码错误!');
-                     }else{
-                         this.$toast(result.data.message);
+                 }).then(response=>{      
+                     // 登陆失败才会返回statusCode，
+                    //  登陆失败处理已在拦截器实现
+                    //  所以只需要取反判断即可           
+                     if(!response.data.statusCode){
+                         this.$toast(response.data.message)
                      }
                  })
             }

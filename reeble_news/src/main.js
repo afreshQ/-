@@ -16,7 +16,22 @@ import axios from 'axios';
 // 绑定到原型
 Vue.prototype.$axios = axios;
 // //设置默认的 api 域名        设置基准路径
-axios.defaults.baseURL = "http://127.0.0.1:3000";
+axios.defaults.baseURL = "http://111.230.181.206:3000";
+
+
+//这里的引入是用于全局的弹窗提示
+import {Toast} from "vant";
+// 使用axios拦截器统一处理响应错误
+axios.interceptors.response.use(response=>{
+    //拿到服务器响应回来的数据
+    const {message,statusCode}=response.data;
+    
+    //判断statusCode==401的时候就提示错误，成功就不需要提示了
+    if(message && statusCode==401){
+      Toast(message);
+    }
+    return response;
+})
 
 
 Vue.config.productionTip = false;
