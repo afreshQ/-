@@ -86,7 +86,7 @@ export default {
                     }
                 }).then(result=>{
                     // console.log(result);
-                    this.$toast(result.data.message)
+                    this.$toast(result.data.message);
                     
                 })
             }else{

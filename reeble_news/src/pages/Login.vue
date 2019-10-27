@@ -82,7 +82,21 @@ export default {
                     //  登陆失败处理已在拦截器实现
                     //  所以只需要取反判断即可           
                      if(!response.data.statusCode){
-                         this.$toast(response.data.message)
+                         this.$toast(response.data.message);
+
+
+                         //把token和用户id存到本地，用于判断登陆状态
+                         localStorage.setItem('token',response.data.data.token);
+                         localStorage.setItem('userId',response.data.data.user.id);
+
+                        //登陆成功后延迟一秒跳转到个人中心页
+                        let timer= setTimeout(() => {
+
+                            this.$router.push({
+                                name:'profilePage'
+                            })
+                            clearTimeout(timer);
+                        }, 1000);
                      }
                  })
             }
@@ -91,10 +105,7 @@ export default {
                 this.$toast("请输入正确的用户名和密码");
                 return;
             }
-
-            // console.log('点击按钮');
-            
-           
+                     
         }
     }
 };

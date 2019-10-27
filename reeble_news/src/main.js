@@ -4,6 +4,24 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+router.beforeEach((to,from,next)=>{
+  //在本地存储获取token
+  let token=localStorage.getItem('token');
+  // console.log(to);
+  // 判断要进入的地址是否是proflie个人中心
+  if(to.path=='/profile' || to.path=='/editprofile'){
+    // 存在token就往下走，不存在则跳转到登录页
+    if(token){
+      next();
+    }else{
+      next('/login');
+    }
+  }else{
+    //继续运行下一中间件
+    next();
+  }
+})
+
 //引入vant-ui库
 import Vant from 'vant';
 //注册vant-ui下的提示组件
@@ -25,10 +43,19 @@ import {Toast} from "vant";
 axios.interceptors.response.use(response=>{
     //拿到服务器响应回来的数据
     const {message,statusCode}=response.data;
+    // console.log(response);
     
     //判断statusCode==401的时候就提示错误，成功就不需要提示了
     if(message && statusCode==401){
       Toast(message);
+    }
+
+    //token过期或者错误会返回{message: "用户信息验证失败",statusCode: 401}
+    //token过期或者错误处理   
+    if(message=="用户信息验证失败"){
+      //这里用replace方法，替换导航，不会留有历史记录
+      // replace和push的区别在于push会把新的路由添加到最后一位，而replace会直接替换掉最后的路由
+      router.replace("/login");
     }
     return response;
 })
