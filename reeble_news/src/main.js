@@ -36,6 +36,15 @@ Vue.prototype.$axios = axios;
 // //设置默认的 api 域名        设置基准路径
 axios.defaults.baseURL = "http://127.0.0.1:3000";
 
+// 添加请求拦截器处理
+axios.interceptors.request.use(config=>{
+  //如果请求头没有带上token，并且本地存储上带有token，则给请求带上,不用每次操作用户数据都要写一遍
+  if(!config.header.Authorizatio && localStorage.getItem('token')){
+    config.header.Authorizatio=localStorage.getItem('token');
+  }
+  return config;
+});
+
 
 //这里的引入是用于全局的弹窗提示
 import {Toast} from "vant";
