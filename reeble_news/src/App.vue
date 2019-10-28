@@ -18,6 +18,7 @@ export default {
 }
 body{
   background-color: #f2f2f2;
+  font-size: 4.444vw;
 }
 a{
     color: inherit;
@@ -29,5 +30,8 @@ a:hover{
 
 ul,li,ol{
     list-style: none;
+}
+.iconfont{
+  font-size: 4.444vw;
 }
 </style>

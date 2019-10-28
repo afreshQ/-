@@ -2,7 +2,7 @@
   <div class="container">
     <router-link to="/editprofile">
       <div class="row1">
-        <img :src="headImg?'http://111.230.181.206:3000' +headImg:'http://img4.imgtn.bdimg.com/it/u=2841002847,3345892877&fm=26&gp=0.jpg'" />
+        <img :src="headImg" />
         <div class="profile">
           <span :class="+gender?'iconfont iconxingbienan':'iconfont iconxingbienv'"></span>
           <span class="name">{{nickname}}</span>
@@ -91,9 +91,11 @@ export default {
       }
     }).then(response=>{
       // console.log(response.data);
-      this.nickname=response.data.data.nickname;
-      this.gender=response.data.data.gender;
-      this.headImg=response.data.data.head_img;
+      let {nickname,gender,head_img}=response.data.data;
+      this.nickname=nickname;
+      this.gender=gender;    
+      //有些用户并没有设置头像，所以我们在这设置一个默认头像
+      this.headImg=head_img?this.$axios.defaults.baseURL+head_img:'/static/imgs/defaults_img.png';
       
     })
   }
@@ -112,9 +114,6 @@ export default {
     .profile {
         flex:1;
         padding-left: 4.167vw;
-        .name{
-            font-size: 4.444vw;
-        }
       .time{
           font-size: 3.889vw;
       }
