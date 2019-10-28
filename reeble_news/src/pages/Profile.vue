@@ -20,7 +20,7 @@
         <cellBar
          label="我的跟帖"
          desc='跟帖 / 回复'
-         @jump='toLabel'
+         @jump="$router.push('/mypost')"
          />
          <cellBar
          label="我的收藏"
