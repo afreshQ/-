@@ -8,7 +8,7 @@
                   <span class="name">{{item.nickname}}</span>
                   <p class="time">2019-10-10</p>
               </div>
-                <div class="cancel">取消关注</div>
+                <div @click="cancelConcern(item.id)" class="cancel">取消关注</div>
           </div>
       </div>
   </div>
@@ -27,15 +27,31 @@ export default {
         }
     },
     created(){
-        this.$axios({
+        this.loadPage();
+    },
+
+    methods:{
+        loadPage(){
+            this.$axios({
             url:'/user_follows',
             method:'get',
-        }).then(res=>{
+            }).then(res=>{
 
-            // console.log(res.data);
-            this.follows=res.data.data;
-            
-        })
+                // console.log(res.data);
+                this.follows=res.data.data;
+                
+            })
+        },
+        cancelConcern(id){
+            this.$axios({
+                url:'/user_unfollow/'+id,
+                method:'get'
+            }).then(res=>{
+                console.log(res.data);
+                // 重新获取列表渲染
+                this.loadPage();
+            })
+        }
     }
 }
 </script>
