@@ -5,6 +5,7 @@ import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Profile from '@/pages/Profile'
 import EditProfile from '@/pages/EditProfile'
+import MyConcern from '@/pages/MyConcern'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/editprofile',
       name: 'editProfilePage',
       component: EditProfile
+    },
+    {
+      path:'/myconcern',
+      name:'myConcernPage',
+      component:MyConcern
     }
   ]
 })
