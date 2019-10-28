@@ -2,6 +2,8 @@
   <div class="editprofile">
     <headerMiddle title="编辑资料" />
     <div class="head-img">
+      <!-- vant的上传组件 -->
+      <van-uploader class="uploader" :after-read="afterRead" />
       <img :src="headImg" />
     </div>
     <div class="userinfo">
@@ -89,13 +91,13 @@ export default {
   },
     //根据本地存储上的userid去后台拿数据渲染到页面上
   created(){
-    this.getUserInfo();
+    this.loadPage();
   },
 
 
   methods:{
     //封装获取用户信息的ajax请求
-    getUserInfo(){
+    loadPage(){
       this.$axios({
       url:'/user/'+localStorage.getItem('userId'),
       method:'get',
@@ -123,7 +125,7 @@ export default {
         data:options
       }).then(res=>{
         console.log(res.data);
-        this.getUserInfo();
+        this.loadPage();
       })
     },
     changeProfile(options){
@@ -136,6 +138,30 @@ export default {
       let newGender=item.name=='女'?0:1;
       this.updata({gender:newGender})
       this.showGender=false;
+    },
+
+    //文件上传
+    afterRead(file){
+      // console.log(file);
+
+      // 使用FormData对象将图片转换成二进制形式的数据，然后通过post请求发送
+      const data=new FormData();
+      data.append('file',file.file);
+
+      this.$axios({
+        url:'/upload',
+        method:'post',
+        data:data
+      }).then(res=>{
+        // res.data.data.url服务器返回的url是上传文件后返回该图片的相对路径
+        let headImg=res.data.data.url;
+        //发送ajax请求更改图片信息
+        this.updata({head_img:headImg});
+
+        //再次渲染
+        this.loadPage();
+      })
+      
     }
   }
 }
@@ -148,11 +174,19 @@ export default {
     }
     .head-img{
       padding: 5.556vw 0;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
       img{
       border-radius: 50%;
       width: 19.444vw;
       height: 19.444vw;
+      }
+          // 上传组件样式
+      .uploader{
+        position: absolute;
+        opacity: 0;
       }
     }
     
