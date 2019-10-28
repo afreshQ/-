@@ -25,7 +25,7 @@
          <cellBar
          label="我的收藏"
          desc='文章 / 视频'
-         @jump='toLabel'
+         @jump="$router.push('/mycollection')"
          />
          <cellBar
          label="设置"
