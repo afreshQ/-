@@ -7,6 +7,7 @@ import Profile from '@/pages/Profile'
 import EditProfile from '@/pages/EditProfile'
 import MyConcern from '@/pages/MyConcern'
 import MyPost from '@/pages/MyPost';
+import MyCollection from '@/pages/MyCollection';
 
 Vue.use(Router)
 
@@ -50,6 +51,11 @@ export default new Router({
       path:'/mypost',
       name:'myPost',
       component:MyPost
+    },
+    {
+      path:'/mycollection',
+      name:'myCollection',
+      component:MyCollection
     }
   ]
 })
