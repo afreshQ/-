@@ -6,6 +6,7 @@ import Register from '@/pages/Register'
 import Profile from '@/pages/Profile'
 import EditProfile from '@/pages/EditProfile'
 import MyConcern from '@/pages/MyConcern'
+import MyPost from '@/pages/MyPost';
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
       path:'/myconcern',
       name:'myConcernPage',
       component:MyConcern
+    },
+    {
+      path:'/mypost',
+      name:'myPost',
+      component:MyPost
     }
   ]
 })
