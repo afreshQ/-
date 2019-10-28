@@ -9,7 +9,10 @@ router.beforeEach((to,from,next)=>{
   let token=localStorage.getItem('token');
   // console.log(to);
   // 判断要进入的地址是否是proflie个人中心
-  if(to.path=='/profile' || to.path=='/editprofile'){
+  let pagesNeedAuth=[
+    '/profile','/editprofile','/myconcern','/mypost'
+  ]
+  if(pagesNeedAuth.indexOf(to.path)>=0){
     // 存在token就往下走，不存在则跳转到登录页
     if(token){
       next();
@@ -34,7 +37,7 @@ import axios from 'axios';
 // 绑定到原型
 Vue.prototype.$axios = axios;
 // //设置默认的 api 域名        设置基准路径
-axios.defaults.baseURL = "http://127.0.0.1:3000";
+axios.defaults.baseURL = "http://111.230.181.206:3000";
 
 // 添加请求拦截器处理
 axios.interceptors.request.use(config=>{

@@ -12,7 +12,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .title{
       padding:0 4.167vw;
       line-height: 13.889vw;
