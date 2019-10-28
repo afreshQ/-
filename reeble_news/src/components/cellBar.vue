@@ -13,7 +13,7 @@ export default {
     props:['label','desc'],
     methods:{
         sendLabel(){
-            this.$emit('sendlabel',this.label);
+            this.$emit('jump',this.label);
         }
     }
 }

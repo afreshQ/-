@@ -34,7 +34,7 @@ import axios from 'axios';
 // 绑定到原型
 Vue.prototype.$axios = axios;
 // //设置默认的 api 域名        设置基准路径
-axios.defaults.baseURL = "http://111.230.181.206:3000";
+axios.defaults.baseURL = "http://127.0.0.1:3000";
 
 
 //这里的引入是用于全局的弹窗提示
@@ -68,5 +68,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  
 })
