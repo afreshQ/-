@@ -4,7 +4,7 @@
       <div class="row1">
         <img :src="headImg" />
         <div class="profile">
-          <span :class="+gender?'iconfont iconxingbienan':'iconfont iconxingbienv'"></span>
+          <span :class="gender?'iconfont iconxingbienan':'iconfont iconxingbienv'"></span>
           <span class="name">{{nickname}}</span>
           <p class="time hui">2019-10-25</p>
         </div>
@@ -15,26 +15,26 @@
         <cellBar
          label="我的关注"
          desc='关注的用户'
-         @sendlabel='toLabel'
+         @jump="$router.push('/myconcern')"
          />
         <cellBar
          label="我的跟帖"
          desc='跟帖 / 回复'
-         @sendlabel='toLabel'
+         @jump='toLabel'
          />
          <cellBar
          label="我的收藏"
          desc='文章 / 视频'
-         @sendlabel='toLabel'
+         @jump='toLabel'
          />
          <cellBar
          label="设置"
-         @sendlabel='toLabel'
+         @jump='toLabel'
          desc=''/>
          <!-- 添加退出登陆功能 -->
          <cellBar
          label="退出登陆"
-         @sendlabel='Logout'
+         @jump='Logout'
          desc=''/>
     </div>
   </div>
