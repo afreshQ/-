@@ -2,11 +2,9 @@
   <div class="container">
     <router-link to="/editprofile">
       <div class="row1">
-        <img v-if="headImg" :src="'http://111.230.181.206:3000' +headImg" />
-        <img v-else src="http://img4.imgtn.bdimg.com/it/u=2841002847,3345892877&fm=26&gp=0.jpg" alt />
+        <img :src="headImg?'http://111.230.181.206:3000' +headImg:'http://img4.imgtn.bdimg.com/it/u=2841002847,3345892877&fm=26&gp=0.jpg'" />
         <div class="profile">
-          <span v-if="gender==1" class="iconfont iconxingbienan"></span>
-          <span v-else class="iconfont iconxingbienv"></span>
+          <span :class="+gender?'iconfont iconxingbienan':'iconfont iconxingbienv'"></span>
           <span class="name">{{nickname}}</span>
           <p class="time hui">2019-10-25</p>
         </div>
@@ -49,11 +47,11 @@ export default {
     cellBar: cellBar
   },
   data(){
-      return {
-        nickname:'',
-        gender:'',
-        headImg:''
-      }
+    return {
+      nickname:'',
+      gender:'',
+      headImg:''
+    }
   },
   methods:{
       toLabel(label){

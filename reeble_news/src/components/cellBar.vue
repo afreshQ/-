@@ -26,7 +26,6 @@ export default {
         display: flex;
         justify-content:space-between;
         align-items: center;
-        
         border-bottom: 1px #e4e4e4 solid;
         .left{
             font-size: 4.444vw;
