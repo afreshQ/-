@@ -2,7 +2,7 @@
   <div class="mycollection">
       <headerMiddle
       title="我的收藏"/>
-      <div class="collection" v-for="item of collections" :key="item.id">
+      <!-- <div class="collection" v-for="item of collections" :key="item.id">
           <div class="item-1" v-if="item.cover.length==1">
               <div class="left">
                   {{item.title}}
@@ -21,15 +21,19 @@
               </div>
               <div class="foot">{{item.user.nickname}} {{item.comments.length}}跟帖</div>
           </div>
-      </div>
+      </div> -->
+      <postList :postLists="collections" />
+
   </div>
 </template>
 
 <script>
+import postList from '../components/postList';
 import headerMiddle from '../components/headerMiddle'
 export default {
     components:{
-        headerMiddle:headerMiddle
+        headerMiddle:headerMiddle,
+        postList:postList
     },
     data(){
         return {
