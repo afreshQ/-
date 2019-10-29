@@ -93,7 +93,7 @@ export default {
                         let timer= setTimeout(() => {
 
                             this.$router.push({
-                                name:'profilePage'
+                                name:'homePage'
                             })
                             clearTimeout(timer);
                         }, 1000);
