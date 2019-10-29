@@ -9,7 +9,10 @@
                   <div class="parent-centent">{{item.parent.content}}</div>
               </div>
               <div class="content">{{item.content}}</div>
-              <div class="original">{{item.post.title}}</div>
+              <div class="original">
+                  <div class="original-txt">原文 : {{item.post.title}}</div>
+                  <span class="iconfont iconjiantou1"></span>
+              </div>
           </div>
       </div>
   </div>
@@ -60,8 +63,17 @@ export default {
         font-size: 3.889vw;
     }
     .original{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         font-size: 3.611vw;
         color: #898989;
+        &-txt{
+        width: 80%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        }
     }
 }
 </style>
