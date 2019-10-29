@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+// import Home from '@/components/Home'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Profile from '@/pages/Profile'
@@ -8,6 +8,7 @@ import EditProfile from '@/pages/EditProfile'
 import MyConcern from '@/pages/MyConcern'
 import MyPost from '@/pages/MyPost';
 import MyCollection from '@/pages/MyCollection';
+import Home from '@/pages/Home';
 
 Vue.use(Router)
 
@@ -15,7 +16,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'homePage',
       component: Home
     },
     // 登陆
@@ -56,6 +57,6 @@ export default new Router({
       path:'/mycollection',
       name:'myCollection',
       component:MyCollection
-    }
+    },
   ]
 })
