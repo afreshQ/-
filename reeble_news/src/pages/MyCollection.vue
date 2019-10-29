@@ -58,6 +58,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding-right: 1.389vw;
         .foot{
             font-size: 3.611vw;
             color: #868686;
@@ -68,6 +69,7 @@ export default {
             width: 33.333vw;
             display: block;
             height: 20.833vw;
+            object-fit:cover;
         }
     }
 }
@@ -78,11 +80,13 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     .center{
+        margin-top: 4.167vw;
         display: flex;
         justify-content: space-between;
         img{
             width: 33%;
             height: 20.556vw;
+            object-fit:cover;
         }
     }
     .foot{
