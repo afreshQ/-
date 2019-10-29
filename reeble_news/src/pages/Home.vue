@@ -1,11 +1,8 @@
 <template>
     <div>
         <homeHeader/>
-        <van-tabs v-model="tabIndex" sticky>
+        <van-tabs v-model="tabIndex" sticky swipeable>
         <van-tab v-for="(tabItem,index) in tabLists" :title="tabItem.name" :key="index">
-            <!-- <div v-for='(post, index) in tabItem.posts' :key="index">
-                    {{post.title}}
-            </div> -->
             <postList :postLists="tabItem.posts" />
         </van-tab>
 </van-tabs>
@@ -69,7 +66,7 @@ export default {
                     category:categoryId
                 }
             }).then(res=>{
-                console.log(res.data.data);
+                // console.log(res.data.data);
                 //获取到该tablist的文章后再存到该tablist中
                 this.tabLists[tabIndex].posts=res.data.data;
             })
