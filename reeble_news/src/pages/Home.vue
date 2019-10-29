@@ -1,7 +1,7 @@
 <template>
     <div>
         <homeHeader/>
-        <van-tabs v-model="tabIndex">
+        <van-tabs v-model="tabIndex" sticky>
         <van-tab v-for="(tabItem,index) in tabLists" :title="tabItem.name" :key="index">
             <!-- <div v-for='(post, index) in tabItem.posts' :key="index">
                     {{post.title}}
