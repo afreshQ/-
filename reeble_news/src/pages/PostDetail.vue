@@ -11,6 +11,17 @@
           <video class="video" poster="https://image.pearvideo.com/cont/20191030/12719568-191638-1.png" v-if="post.type==2" src="https://video.pearvideo.com/mp4/third/20191030/cont-1617676-12719568-191141-hd.mp4" controls="controls"></video>
 
           <div  class="center" v-else v-html="post.content"></div>
+
+          <div class="footer">
+              <div class="like radius" @click="liking">
+                  <span :class="{red:has_like}" class="iconfont icondianzan"></span>
+                  <span class="sz_13px">{{post.like_length}}</span>
+              </div>
+              <div class="wechat radius">
+                  <span class="iconfont iconweixin"></span>
+                  <span class="sz_13px">微信</span>
+              </div>
+          </div>
       </div>
       <postDetailFooter/>
   </div>
@@ -32,7 +43,9 @@ export default {
             //存放从后台拿到的文章数据对象
             post:{
                 user:{}
-            }
+            },
+
+            has_like:false
         }
     },
     created(){
@@ -47,9 +60,33 @@ export default {
             let {data}=res.data;
 
             this.post=data;
+            this.has_like=data.has_like;
             console.log(this.post);
         })
         
+    },
+
+    methods:{
+        liking(){
+
+            this.$axios({
+                url:'/post_like/'+this.postId,
+                method:'get'
+            }).then(res=>{
+                let {message}=res.data;
+                console.log(message);
+                
+                if(message=="点赞成功"){
+                    this.post.like_length+=1;
+                    this.has_like=true;
+                }else if(message=="取消成功"){
+                    this.post.like_length-=1;
+                    this.has_like=false;
+                }
+            })
+
+
+        }
     }
 
 }
@@ -79,5 +116,27 @@ export default {
             }
         }
     }
+    .footer{
+        margin-top: 8.333vw;
+        display: flex;
+        justify-content: space-around;
+        .radius{
+            padding: 0 2.778vw;
+            border: 1px solid #797979;
+            border-radius: 27.778vw;
+            line-height: 7.778vw;
+        }
+        .iconweixin{
+            color: #00c800;
+        }
+
+        .sz_13px{
+            font-size: 3.611vw;
+        }
+    }
+}
+
+.red{
+    color: #ff0000;
 }
 </style>
