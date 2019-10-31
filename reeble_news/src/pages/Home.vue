@@ -104,7 +104,7 @@ export default {
                 let newData=[...this.tabLists[tabIndex].posts,...data]
                 this.tabLists[tabIndex].posts=newData;
 
-                this.loading=true;
+                this.loading=false;
 
                 if (data.length < this.pageSize) {
                     // 将当前 tab 的 finished 属性修改为 true 
