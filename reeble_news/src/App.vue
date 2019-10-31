@@ -17,6 +17,7 @@ export default {
     padding:0;
 }
 body{
+  color: #333;
   background-color: #f2f2f2;
   font-size: 4.444vw;
 }
