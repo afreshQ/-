@@ -17,7 +17,7 @@ router.beforeEach((to,from,next)=>{
     if(token){
       next();
     }else{
-      next('/login');
+      router.replace('/login');
     }
   }else{
     //继续运行下一中间件

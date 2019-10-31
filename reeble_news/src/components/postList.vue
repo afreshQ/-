@@ -4,7 +4,7 @@
 
         <!-- 带视频视频的文章，判断文章类型type=2 -->
         <div class="item" v-if="item.type==2">
-            <div class="head">{{item.title}}</div>
+            <div class="head" @click="toDetail(item.id)" >{{item.title}}</div>
                 <div class="center">
                     <img class="video-cover" :src="item.cover[0].url" alt="">
                     <div class="video-start-btn">
@@ -15,8 +15,8 @@
         </div>
 
         <!-- 单图片封面文章 -->
-        <div class="item-1" v-if="item.cover.length > 0 && item.cover.length < 3">
-            <div class="left">
+        <div class="item-1" v-else-if="item.cover.length > 0 && item.cover.length < 3">
+            <div class="left" @click="toDetail(item.id)">
                 {{item.title}}
                 <div class="foot">{{item.user.nickname}} {{item.comment_length}}跟帖</div>
             </div>
@@ -26,8 +26,8 @@
         </div>
 
         <!-- 多图片封面文章 -->
-        <div class="item-2" v-else-if="item.cover.length>=3">
-            <div class="head">{{item.title}}</div>
+        <div class="item-2" v-else-if="item.cover.length>2">
+            <div class="head" @click="toDetail(item.id)" >{{item.title}}</div>
             <div class="center">
                 <img class="img" :src="item.cover[0].url" alt="">
                 <img class="img" :src="item.cover[1].url" alt="">
@@ -44,6 +44,16 @@ export default {
     props:[
         'postLists',
     ],
+    methods:{
+        toDetail(id){
+            this.$router.push({
+                name:'pageDetail',
+                params:{
+                    id
+                }
+            })
+        }
+    }
 }
 </script>
 

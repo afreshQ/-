@@ -9,6 +9,7 @@ import MyConcern from '@/pages/MyConcern'
 import MyPost from '@/pages/MyPost';
 import MyCollection from '@/pages/MyCollection';
 import Home from '@/pages/Home';
+import PostDetail from '@/pages/PostDetail';
 
 Vue.use(Router)
 
@@ -57,6 +58,11 @@ export default new Router({
       path:'/mycollection',
       name:'myCollection',
       component:MyCollection
+    },
+    {
+      path:'/pagedetail/:id',
+      name:'pageDetail',
+      component:PostDetail
     },
   ]
 })
