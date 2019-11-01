@@ -14,7 +14,7 @@
           </div>
       </div>
       <div class="input" v-else>
-            <textarea ref="comment" class="textArea" @blur="isClick = false" placeholder="回复 : @火星情报" cols="30" rows="3"></textarea>
+            <textarea ref="comment" v-model="comment" class="textArea" @blur="handleBlur" placeholder="回复 : @火星情报" cols="30" rows="3"></textarea>
           <div class="send">发送</div>
       </div>
   </div>
@@ -26,6 +26,8 @@ export default {
     data(){
         return {
             isClick:false,
+
+            comment:''
         }
     },
 
@@ -62,6 +64,12 @@ export default {
                 }
                 
             })
+        },
+
+        handleBlur(){
+            if(!this.comment){
+                this.isClick=false;
+            }
         }
     }
 }
