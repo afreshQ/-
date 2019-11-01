@@ -23,6 +23,10 @@
               </div>
           </div>
       </div>
+        <div class="wonderful-comments">
+            <div class="title">精彩跟帖</div>
+            <comments :postid="postId"/>
+        </div>
       <postDetailFooter :post="post"/>
   </div>
 </template>
@@ -30,10 +34,12 @@
 <script>
 import postDetailHeader from '../components/postDetailHeader';
 import postDetailFooter from '../components/postDetailFooter';
+import comments from '../components/comments';
 export default {
     components:{
         postDetailHeader,
-        postDetailFooter
+        postDetailFooter,
+        comments
     },
 
     data(){
@@ -83,16 +89,17 @@ export default {
             })
 
 
-        }
+        },
     }
 
 }
 </script>
 
 <style lang="less" scoped>
+
 .postContent{
     padding: 0 4.167vw;
-    margin-bottom: 13.889vw;
+    border-bottom: 5px solid #e4e4e4;
     .header{
         .desc{
             margin-top: 2.778vw;
@@ -133,6 +140,15 @@ export default {
         }
     }
 }
+
+.wonderful-comments{
+    margin-top: 5.556vw;
+    .title{
+        text-align: center;
+        font-size: 5vw;
+    }
+}
+
 
 .red{
     color: #ff0000;

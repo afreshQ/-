@@ -3,11 +3,11 @@
         <floor v-if="floorItem.parent" :floorItem="floorItem.parent" />
         <div class="commentFloor">
             <div class="header">
-                <span class="name">火星网友</span>
+                <span class="name">{{floorItem.user.nickname}}</span>
                 <span class="time sz-12">5秒前</span>
                 <span class="btnReply sz-12">回复</span>
             </div>
-        <div class="content">123</div>
+        <div class="content">{{floorItem.content}}</div>
   </div>
     </div>
 </template>
@@ -24,6 +24,7 @@ export default {
     padding: 4.167vw;
     border: 1px solid #d7d7d7;
     font-size: 3.889vw;
+    margin-bottom: -1px;
     .header{
         display: flex;
         justify-content: space-between;
