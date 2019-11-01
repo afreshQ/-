@@ -1,6 +1,6 @@
 <template>
   <div>
-      <postDetailHeader/>
+      <postDetailHeader :post="post"/>
       <div class="postContent">
           <div class="header">
               <h3 class="title">{{post.title}}</h3>
@@ -14,7 +14,7 @@
 
           <div class="footer">
               <div class="like radius" @click="liking">
-                  <span :class="{red:has_like}" class="iconfont icondianzan"></span>
+                  <span :class="{red:post.has_like}" class="iconfont icondianzan"></span>
                   <span class="sz_13px">{{post.like_length}}</span>
               </div>
               <div class="wechat radius">
@@ -23,7 +23,7 @@
               </div>
           </div>
       </div>
-      <postDetailFooter/>
+      <postDetailFooter :post="post"/>
   </div>
 </template>
 
@@ -44,8 +44,6 @@ export default {
             post:{
                 user:{}
             },
-
-            has_like:false
         }
     },
     created(){
@@ -60,7 +58,6 @@ export default {
             let {data}=res.data;
 
             this.post=data;
-            this.has_like=data.has_like;
             console.log(this.post);
         })
         
@@ -78,10 +75,10 @@ export default {
                 
                 if(message=="点赞成功"){
                     this.post.like_length+=1;
-                    this.has_like=true;
+                    this.post.has_like=true;
                 }else if(message=="取消成功"){
                     this.post.like_length-=1;
-                    this.has_like=false;
+                    this.post.has_like=false;
                 }
             })
 
@@ -95,6 +92,7 @@ export default {
 <style lang="less" scoped>
 .postContent{
     padding: 0 4.167vw;
+    margin-bottom: 13.889vw;
     .header{
         .desc{
             margin-top: 2.778vw;
@@ -117,7 +115,7 @@ export default {
         }
     }
     .footer{
-        margin-top: 8.333vw;
+        padding: 8.333vw 0;
         display: flex;
         justify-content: space-around;
         .radius{

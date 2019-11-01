@@ -5,11 +5,11 @@
           <span class="iconfont iconnew"></span>
       </div>
       <div class="right"> 
-          <div class="btnConcern active" v-if="true">
-              关注
-          </div>
-          <div class="btnConcern" v-else>
+          <div class="btnFollow" v-if="post.has_follow">
               已关注
+          </div>
+          <div @click="userfollow" class="btnFollow active" v-else >
+              关注
           </div>
       </div>
   </div>
@@ -17,7 +17,24 @@
 
 <script>
 export default {
+    props:['post'],
 
+    methods:{
+        userfollow(){
+            this.$axios({
+                url:'/user_follows/'+this.post.user.id,
+                method:'get'
+            }).then(res=>{
+                let {message}=res.data;
+
+                console.log(message);
+                
+                if(message=="关注成功"){
+                    this.post.has_follow=true;
+                }
+            })
+        }
+    }
 }
 </script>
 
@@ -35,7 +52,7 @@ export default {
         }
     }
     .right{
-        .btnConcern{
+        .btnFollow{
             font-size: 3.333vw;
             line-height: 7.222vw;
             padding: 0 4.167vw;
