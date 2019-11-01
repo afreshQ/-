@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import authInput from '../components/authInput';
-import authBtn from '../components/authBtn';
+import authInput from './components/authInput';
+import authBtn from './components/authBtn';
 export default {
     components:{
         authInput:authInput,
