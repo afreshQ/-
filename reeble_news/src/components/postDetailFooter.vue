@@ -6,10 +6,10 @@
           </div>
           <div class="col-2">
               <div class="comments">
-                  <div class="number">1020</div>
+                  <div class="number">{{post.comment_length}}</div>
                   <span class="iconfont iconpinglun-"></span>
               </div>
-              <span class="iconfont iconshoucang"></span>
+              <span @click="shouCang" :class="{red:post.has_star}" class="iconfont iconshoucang"></span>
               <span class="iconfont iconfenxiang"></span>
           </div>
       </div>
@@ -22,9 +22,10 @@
 
 <script>
 export default {
+    props:['post'],
     data(){
         return {
-            isClick:false
+            isClick:false,
         }
     },
 
@@ -41,6 +42,25 @@ export default {
             this.$nextTick(()=>{
 
                 this.$refs.comment.focus();
+            })
+        },
+
+        shouCang(){
+
+            this.$axios({
+                url:'/post_star/'+this.post.id,
+                method:'get'
+            }).then(res=>{
+                let {message}=res.data;
+
+                console.log(message);
+
+                if(message=="收藏成功"){
+                    this.post.has_star=true;
+                }else if(message=="取消成功"){
+                    this.post.has_star=false;
+                }
+                
             })
         }
     }
@@ -113,5 +133,8 @@ export default {
         background-color: #ff0000;
         color: #fff;
     }
+}
+.red{
+    color: #ff0000;
 }
 </style>
