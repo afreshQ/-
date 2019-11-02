@@ -10,6 +10,7 @@ import MyPost from '@/pages/MyPost';
 import MyCollection from '@/pages/MyCollection';
 import Home from '@/pages/Home';
 import PostDetail from '@/pages/PostDetail';
+import MoreComments from '@/pages/MoreComments';
 
 Vue.use(Router)
 
@@ -64,5 +65,10 @@ export default new Router({
       name:'pageDetail',
       component:PostDetail
     },
+    {
+      path:'/morecomments',
+      name:'moreComments',
+      component:MoreComments
+    }
   ]
 })
