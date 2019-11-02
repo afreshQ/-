@@ -15,7 +15,7 @@
       </div>
       <div class="input" v-else>
             <textarea ref="comment" v-model="comment" class="textArea" @blur="handleBlur" placeholder="回复 : @火星情报" cols="30" rows="3"></textarea>
-          <div class="send">发送</div>
+          <div class="send" @click="send">发送</div>
       </div>
   </div>
 </template>
@@ -70,6 +70,21 @@ export default {
             if(!this.comment){
                 this.isClick=false;
             }
+        },
+
+        send(){
+            this.$axios({
+                url:'/post_comment/'+this.post.id,
+                method:'post',
+                data:{
+                    content:this.comment
+                }
+            }).then(res=>{
+                let {message}=res.data;
+
+                console.log(message);
+                
+            })
         }
     }
 }
