@@ -25,7 +25,18 @@
       </div>
         <div class="wonderful-comments">
             <div class="title">精彩跟帖</div>
-            <comments :postid="postId"/>
+
+            <div class="no-comments" v-if="comments.length==0">
+                暂无跟帖,抢占沙发
+            </div>
+
+            <comments v-else :commentItem="item" v-for="(item,index) of comments" :key="index.id"/>
+
+            <div class="moreComments">
+                <div class="btnMore" @click="toMoreComments">
+                    更多跟帖
+                </div>
+            </div>
         </div>
       <postDetailFooter :post="post"/>
   </div>
@@ -50,6 +61,8 @@ export default {
             post:{
                 user:{}
             },
+
+            comments:[]
         }
     },
     created(){
@@ -57,6 +70,7 @@ export default {
         this.postId=this.$route.params.id;
         // console.log(this.postId);
 
+        //获取文章
         this.$axios({
             url:'/post/'+this.postId,
             method:'get'
@@ -65,6 +79,20 @@ export default {
 
             this.post=data;
             console.log(this.post);
+        })
+
+        // 获取跟帖
+        this.$axios({
+            url:'/post_comment/'+this.postId,
+            method:'get',
+            params:{
+                pageSize:3
+            }
+        }).then(res=>{
+            let {data}=res.data;
+
+            console.log(data);
+            this.comments=data;
         })
         
     },
@@ -87,9 +115,16 @@ export default {
                     this.post.has_like=false;
                 }
             })
-
-
         },
+
+        toMoreComments(){
+            this.$router.push({
+                name:'moreComments',
+                params:{
+                    id:this.postId
+                }
+            })
+        }
     }
 
 }
@@ -143,9 +178,30 @@ export default {
 
 .wonderful-comments{
     margin-top: 5.556vw;
+    margin-bottom: 33.333vw;
     .title{
         text-align: center;
         font-size: 5vw;
+    }
+     .no-comments{
+        margin-top: 8.333vw;
+        text-align: center;
+        font-size: 14px;
+        color: #aeaeae;
+    }
+    .moreComments{
+        margin-top: 8.333vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .btnMore{
+            width: 33.333vw;
+            line-height: 8.333vw;
+            text-align: center;
+            border-radius: 4.167vw;
+            border: 1px solid #797979;
+            font-size: 3.889vw;
+        }
     }
 }
 
