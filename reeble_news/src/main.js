@@ -37,7 +37,7 @@ import axios from 'axios';
 // 绑定到原型
 Vue.prototype.$axios = axios;
 // //设置默认的 api 域名        设置基准路径
-axios.defaults.baseURL = "http://111.230.181.206:3000";
+axios.defaults.baseURL = "http://liangwei.tech:3000";
 
 // 添加请求拦截器处理
 axios.interceptors.request.use(config=>{
